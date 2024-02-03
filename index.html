@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body, html {
-            height: 100%;
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Café Romano</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <style>
+        html { 
+            background: url(./mirzaghasemi.png) no-repeat center right fixed;
+
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover; 
+        }
+        body {
+            padding: 0;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            overflow: hidden;
+            height: 80%;
         }
-        #container {
-            position: relative;
-            height: 100%;
+      </style>
+ <script>
+    window.onload = function() {
+    var img = new Image();
+    img.src = './mirzaghasemi.jpg';
+    img.onload = function() {
+        var displayAspectRatio = window.innerWidth / window.innerHeight;
+        if (displayAspectRatio < 0.65) {
+            document.documentElement.style.backgroundImage = 'url(' + './mirzaghasemi-short.jpg' + ')';
+            document.documentElement.style.backgroundSize = '100% 100%';
+        } else {
+            document.documentElement.style.backgroundImage = 'url(' + img.src + ')';
         }
-        #bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: url(./mirzaghasemi.png) no-repeat right center;
-            background-size: cover;
-        }
-    </style>
-</head>
-<body>
-    <div id="container">
-        <div id="bg"></div>
-    </div>
-    <script>
-        function adjustBackground() {
-            var container = document.getElementById('container');
-            var bg = document.getElementById('bg');
-            var img = new Image();
-            img.src = getComputedStyle(bg).backgroundImage.slice(5, -2);
-            img.onload = function() {
-                var aspectRatio = this.width / this.height;
-                container.style.width = Math.max(window.innerWidth * 0.65, window.innerHeight * aspectRatio) + 'px';
-            };
-        }
-        window.onresize = adjustBackground;
-        window.onload = adjustBackground;
+    };
+};
     </script>
-</body>
+    
+
+   </head>
+   <body>
+   </body>
 </html>
