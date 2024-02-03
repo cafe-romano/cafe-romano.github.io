@@ -1,57 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- basic -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="height=device-height, initial-scale=1">
     <!-- mobile metas -->
     <meta name="viewport" content="height=device-height, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>Café Romano</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- fevicon -->
-    <link rel="icon" href="images/favicon.png" type="image/gif" />
     <style>
         body {
             margin: 0;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
             position: relative;
-        }
-        #bg {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            overflow: hidden;
-        }
-        #bg img {
-            height: 100%;
+            background: url(./mirzaghasemi.jpg) no-repeat right center;
+            background-size: auto 100%;
         }
     </style>
 </head>
 <body>
-    <div id="bg"></div>
     <script>
-        var img = new Image();
-        img.src = './mirzaghasemi.png';
-        img.onload = function() {
-            var bg = document.getElementById('bg');
-            bg.style.width = 'auto';
-            bg.appendChild(this);
-        };
-        window.onresize = function() {
-            var bg = document.getElementById('bg');
-            var img = bg.querySelector('img');
-            bg.style.width = 'auto';
-        };
+        function adjustBackground() {
+            var img = new Image();
+            img.src = document.body.style.backgroundImage.slice(5, -2);
+            img.onload = function() {
+                var aspectRatio = this.width / this.height;
+                var bodyAspectRatio = window.innerWidth / window.innerHeight;
+                if (bodyAspectRatio < aspectRatio * 0.65) {
+                    document.body.style.backgroundSize = (window.innerHeight * aspectRatio) + 'px auto';
+                } else {
+                    document.body.style.backgroundSize = 'auto 100%';
+                }
+            };
+        }
+        window.onresize = adjustBackground;
+        window.onload = adjustBackground;
     </script>
 </body>
 </html>
