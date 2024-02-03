@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="height=device-height, initial-scale=1">
-    <!-- mobile metas -->
-    <meta name="viewport" content="height=device-height, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+        body, html {
+            height: 100%;
             margin: 0;
-            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             overflow: hidden;
+        }
+        #container {
             position: relative;
-            background: url(./mirzaghasemi.jpg) no-repeat right center;
-            background-size: auto 100%;
+            height: 100%;
+        }
+        #bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url(./mirzaghasemi.png) no-repeat right center;
+            background-size: cover;
         }
     </style>
 </head>
 <body>
+    <div id="container">
+        <div id="bg"></div>
+    </div>
     <script>
         function adjustBackground() {
+            var container = document.getElementById('container');
+            var bg = document.getElementById('bg');
             var img = new Image();
-            img.src = document.body.style.backgroundImage.slice(5, -2);
+            img.src = getComputedStyle(bg).backgroundImage.slice(5, -2);
             img.onload = function() {
                 var aspectRatio = this.width / this.height;
-                var bodyAspectRatio = window.innerWidth / window.innerHeight;
-                if (bodyAspectRatio < aspectRatio * 0.65) {
-                    document.body.style.backgroundSize = (window.innerHeight * aspectRatio) + 'px auto';
-                } else {
-                    document.body.style.backgroundSize = 'auto 100%';
-                }
+                container.style.width = Math.max(window.innerWidth * 0.65, window.innerHeight * aspectRatio) + 'px';
             };
         }
         window.onresize = adjustBackground;
