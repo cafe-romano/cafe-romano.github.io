@@ -16,23 +16,43 @@
       <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
       <style>
-        html { 
-    background: url(./mirzaghasemi.png) no-repeat right center fixed;
-    -webkit-background-size: auto 100%;
-    -moz-background-size: auto 100%;
-    -o-background-size: auto 100%;
-    background-size: auto 100%; 
-}
-body {
-    padding: 0;
-    margin: 0;
-    background: #f8f7e5 url('./mirzaghasemi.png') no-repeat center top;
-    background-attachment:scroll;
-    height: 100%;
-}
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        #bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+        #bg img {
+            height: 100%;
+        }
 
       </style>
    </head>
    <body>
-   </body>
+    <div id="bg"></div>
+    <script>
+        var img = new Image();
+        img.src = './mirzaghasemi.png';
+        img.onload = function() {
+            var bg = document.getElementById('bg');
+            bg.style.width = Math.max(window.innerWidth / 2, this.width / this.height * window.innerHeight) + 'px';
+            bg.appendChild(this);
+        };
+        window.onresize = function() {
+            var bg = document.getElementById('bg');
+            var img = bg.querySelector('img');
+            bg.style.width = Math.max(window.innerWidth / 2, img.width / img.height * window.innerHeight) + 'px';
+        };
+    </script>
+</body>
 </html>
