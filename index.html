@@ -17,7 +17,7 @@
       <link rel="icon" href="favicon.png" type="image/gif" />
       <style>
         html { 
-            background: url(./mirzaghasemi.jpg) no-repeat center right fixed;
+            background: url(./mirzaghasemi.jpg) no-repeat center center fixed;
 
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -39,6 +39,9 @@
             if (displayAspectRatio < 0.65) {
                 document.documentElement.style.backgroundImage = 'url(' + './mirzaghasemi-short.jpg' + ')';
                 document.documentElement.style.backgroundSize = '100% 100%';
+            } else {
+                document.documentElement.style.background = '#f8f7e5 url(./mirzaghasemi.jpg) no-repeat center center fixed;';
+                document.documentElement.style.backgroundSize = 'contain';
             }
         };
     };
